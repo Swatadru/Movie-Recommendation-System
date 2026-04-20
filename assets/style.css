@@ -1,0 +1,232 @@
+/* CineVision Cinematic UI - Next-Gen OTT Design */
+@import url('https://fonts.googleapis.com/css2?family= outfit:wght@300;400;600;800&family=Inter:wght@400;700&display=swap');
+
+:root {
+    --netflix-red: #E50914;
+    --bg-black: #0E1117;
+    --card-hover-bg: #1a1c23;
+    --text-primary: #FFFFFF;
+    --text-muted: #B3B3B3;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Base Styles */
+.stApp {
+    background-color: var(--bg-black);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin-top: 80px; /* Space for sticky nav */
+}
+
+/* Typography Overrides */
+h1, h2, h3, .app-logo {
+    font-family: 'Outfit', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Hide default streamlit clutter */
+#MainMenu, footer, header { visibility: hidden; }
+
+/* --- STICKY NAVIGATION --- */
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+    z-index: 1000;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease;
+}
+
+.nav-logo {
+    color: var(--netflix-red);
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+/* --- HERO BANNER 2.0 --- */
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center 20%;
+    filter: brightness(0.7);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, transparent 0%, rgba(14, 17, 23, 0.8) 70%, var(--bg-black) 100%);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 0 5%;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.hero-badge {
+    background: var(--netflix-red);
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.hero-summary {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+/* --- HORIZONTAL SCROLLING --- */
+.section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 40px 0 15px 5%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-header::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--netflix-red);
+    border-radius: 2px;
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 5% 40px;
+    gap: 1.5rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+.movie-card-v2 {
+    flex: 0 0 auto;
+    width: 240px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.movie-card-v2:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
+
+.card-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, var(--bg-black) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+.movie-card-v2:hover .card-hover-overlay {
+    opacity: 1;
+}
+
+/* --- DIALOG STYLING --- */
+[data-testid="stDialog"] {
+    background-color: var(--bg-black);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+/* Interaction Controls */
+.action-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    background: white;
+    color: black;
+}
+
+.play-btn {
+    background: white;
+    color: black;
+}

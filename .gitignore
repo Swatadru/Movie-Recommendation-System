@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+venv/
+env/
+
+# Streamlit
+.streamlit/
+
+# Large artifacts (optional but usually excluded if auto-generating)
+# In our case, we are pushing the optimized PKLs
+# tmdb_5000_credits.csv # Keep for cold boot
+# tmdb_5000_movies.csv # Keep for cold boot
+
+# OS files
+.DS_Store
+Thumbs.db
